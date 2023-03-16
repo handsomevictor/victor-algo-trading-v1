@@ -9,12 +9,17 @@ from kaikosdk import sdk_pb2_grpc
 from kaikosdk.stream.index_v1 import request_pb2 as pb_index
 
 
-def index_request(channel: grpc.Channel):
+def index_request(index_code):
+    credentials = grpc.ssl_channel_credentials(root_certificates=None)
+    call_credentials = grpc.access_token_call_credentials(os.environ['KAIKO_API_KEY'])
+    composite_credentials = grpc.composite_channel_credentials(credentials, call_credentials)
+    channel = grpc.secure_channel('gateway-v0-grpc.kaiko.ovh', composite_credentials)
+
     try:
         with channel:
             stub = sdk_pb2_grpc.StreamIndexServiceV1Stub(channel)
             responses = stub.Subscribe(pb_index.StreamIndexServiceRequestV1(
-                index_code="KK_RR_BTCUSD"
+                index_code=index_code
             ))
             for response in responses:
                 print("Received message %s" % (MessageToJson(response, including_default_value_fields=True)))
