@@ -34,7 +34,7 @@ def index_request(index_code, measurement_name, bucket_name, verify_ssl=False):
                 message = json.loads(MessageToJson(response, including_default_value_fields=True))
                 # print(message)
 
-                if i >= 1:
+                if i >= 3:
                     # upload data to influxdb
                     # print(data)
                     execute_check_process(data, measurement_name, bucket_name, verify_ssl=verify_ssl)
@@ -43,12 +43,17 @@ def index_request(index_code, measurement_name, bucket_name, verify_ssl=False):
                     data = defaultdict(list)
                     i = 0
                 else:
-                    # change the time message['interval']['end_time'] to datetime, format is 2021-05-05T00:00:00Z
-                    data['current_time'].append(datetime.datetime.strptime(message['interval']['endTime'],
-                                                                           '%Y-%m-%dT%H:%M:%SZ'))
-                    data['index_code'].append(index_code)
-                    data['price'].append(message['percentages'][0]['price'])
-                    i += 1
+                    try:
+                        # change the time message['interval']['end_time'] to datetime, format is 2021-05-05T00:00:00Z
+                        data['current_time'].append(datetime.datetime.strptime(message['interval']['endTime'],
+                                                                               '%Y-%m-%dT%H:%M:%SZ'))
+                        data['index_code'].append(index_code)
+                        data['price'].append(message['percentages'][0]['price'])
+                        i += 1
+                    # except key error
+                    except KeyError as e:
+                        # record time
+                        logging.error(datetime.datetime.now(), e, message, '\n')
 
     except grpc.RpcError as e:
         print(e.details(), e.code())
