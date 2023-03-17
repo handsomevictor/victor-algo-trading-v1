@@ -59,7 +59,7 @@ def run_daily_interest_rate_updates():
         print(f'T Bills Market Rate uploaded at {datetime.datetime.now()}')
 
     # ----------- Bank Prime Loan Rate ------------
-    Bank_Prime_Loan_Rate = fred_data.Bank_Prime_Loan_Rate()
+    Bank_Prime_Loan_Rate = fred_data.get_Bank_Prime_Loan_Rate()
     if Bank_Prime_Loan_Rate is not None:
         fred_data.upload_historical_data(data=Bank_Prime_Loan_Rate,
                                          bucket_name='testing',

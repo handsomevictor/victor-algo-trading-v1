@@ -6,6 +6,12 @@
 2. Fred Api Key (免费注册)
 3. Influxdb Token
 
+数据源：
+1. crypto: Kaiko
+2. macro: Fred
+3. forex & commodity: Yahoo Finance
+4. news: Google News ????
+
 目标：
 在GCP上存储数据（动态数据，目前打算存储coinmarketcap上前10名的coin在最大的几家交易所上的trade和ohlcv等数据）
 同时直接GCP上跑模型和algo策略，然后上传influxdb（host在GCP上）上，然后用grafana展示，展示的还有策略的收益买卖点等
@@ -26,8 +32,10 @@
 8. 用google trend找一些近期的热门词，然后在grafana里面添加一个热门词的图表
 9. 爬虫，之后，用chatgpt来判断新闻的情感，然后在grafana里面添加一个情感的图表
 10. 继续找CDS数据，在grafana中显示前几名的，或者等
-11. （非重要）添加财报数据，并画图，加上行业，可以filter对比，然后添加造假很可能的一些指标
-12. 
+11. （非重要）添加财报数据，并画图，加上行业，可以filter对比，然后添加造假很可能的一些指标 - 参考https://pypi.org/project/yahoofinancials/
+12. 外汇数据里面，添加一些常用的套利的走势，比如eur/usd和eur/jpy的走势，然后在grafana里面添加一个套利的图表
+13. kaiko data里面加入ohlcv，和volume什么的，加上slippage图，加上orderbook的density相关的
+14. 大宗商品
 
 
 说明：

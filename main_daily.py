@@ -6,6 +6,7 @@ def run():
     This function is the main function that runs all the daily updates, all of them are already uploaded to InfluxDB.
     """
     # ----------------- Daily Updates -----------------
+
     # ----------------- Interest Rates ----------------
     run_daily_interest_rate_updates()
     print('Daily Interest Rate Updates Done')

@@ -1,0 +1,8 @@
+2023-03-17 23:52:41,771 - DEBUG - Starting new HTTPS connection (1): finance.yahoo.com:443
+2023-03-17 23:52:41,839 - DEBUG - https://finance.yahoo.com:443 "GET /lookup/all?s=AA&t=A&b=0&c=25 HTTP/1.1" 307 0
+2023-03-17 23:52:41,841 - DEBUG - Starting new HTTPS connection (1): guce.yahoo.com:443
+2023-03-17 23:52:41,992 - DEBUG - https://guce.yahoo.com:443 "GET /consent?brandType=nonEu&gcrumb=D6nvrmM&done=https%3A%2F%2Ffinance.yahoo.com%2Flookup%2Fall%3Fs%3DAA%26t%3DA%26b%3D0%26c%3D25 HTTP/1.1" 302 0
+2023-03-17 23:52:41,993 - DEBUG - Starting new HTTPS connection (1): consent.yahoo.com:443
+2023-03-17 23:52:42,162 - DEBUG - https://consent.yahoo.com:443 "GET /v2/collectConsent?sessionId=3_cc-session_0f81f4a0-89dd-4b49-a15a-f766f0951a94 HTTP/1.1" 200 7894
+2023-03-17 23:52:42,170 - INFO - Counts: AA CTYPE html>
+<h

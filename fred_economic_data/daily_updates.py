@@ -124,7 +124,7 @@ class FredData:
             return None
         return res, which_one
 
-    def Bank_Prime_Loan_Rate(self):
+    def get_Bank_Prime_Loan_Rate(self):
         """
         https://fred.stlouisfed.org/series/DPRIME
         """
@@ -135,6 +135,48 @@ class FredData:
                                                                   f'{datetime.datetime.now()}')
         return data
 
+    def get_Job_Posting_on_Indeed(self):
+        """
+        https://fred.stlouisfed.org/series/IHLIDXUS
+        看清楚frequency！肯定要从这里移出去的！
+        """
+
+        # data = self.fred.get_series('IHLIDXUS')
+        # if data is None or data.empty:
+        #     return None
+        # data = self.process_data(data, self_defined_error_message=f'Job Posting on Indeed has a problem on '
+        #                                                           f'{datetime.datetime.now()}')
+        # return data
+        ...
+
+    def get_Initial_Jobless_Claims(self):
+        """
+        https://fred.stlouisfed.org/series/ICSA
+        看清楚frequency！肯定要从这里移出去的！
+        """
+        # data = self.fred.get_series('ICSA')
+        # if data is None or data.empty:
+        #     return None
+        # data = self.process_data(data, self_defined_error_message=f'Initial Jobless Claims has a problem on '
+        #                                                           f'{datetime.datetime.now()}')
+        # return data
+        ...
+
+    def get_Job_Openings_and_Labor_Turnover_Survey(self):
+        """
+        https://fred.stlouisfed.org/categories/32241 contains:
+        1. Total Nonfarm
+        2. Total Private
+        3. Government
+        看清楚frequency！肯定要从这里移出去的！
+        """
+        non_farm = self.fred.get_series('JTSOSL')
+        # if data is None or data.empty:
+        #     return None
+        # data = self.process_data(data, self_defined_error_message=f'Job Openings and Labor Turnover Survey has a problem on '
+        #                                                           f'{datetime.datetime.now()}')
+        # return data
+        ...
 
 
 
@@ -194,7 +236,7 @@ if __name__ == '__main__':
     #                                          product_name=f"Treasury Bill - {name_dict[which_one[i]]} "
     #                                                       f"Treasury Bill Secondary Market Rate")
 
-    Bank_Prime_Loan_Rate = fred_data.Bank_Prime_Loan_Rate()
+    Bank_Prime_Loan_Rate = fred_data.get_Bank_Prime_Loan_Rate()
     if Bank_Prime_Loan_Rate is not None:
         fred_data.upload_historical_data(data=Bank_Prime_Loan_Rate,
                                          bucket_name='testing',
