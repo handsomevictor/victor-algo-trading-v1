@@ -26,11 +26,11 @@ def run_daily_interest_rate_updates():
         fred_data.upload_historical_data(data=data_DAAA,
                                          bucket_name='testing',
                                          measurement_name='corp_bond_aaa_try1',
-                                         product_name="Interest Rate - Corporate Bond - Moody's Seasoned Aaa "
+                                         product_name="Corporate Bond - Moody's Seasoned Aaa "
                                                       "Corporate Bond Yield")
         fred_data.upload_historical_data(data=data_DBAA,
                                          bucket_name='testing',
                                          measurement_name='corp_bond_aaa_try1',
-                                         product_name="Interest Rate - Corporate Bond - Moody's Seasoned Baa "
+                                         product_name="Corporate Bond - Moody's Seasoned Baa "
                                                       "Corporate Bond Yield")
         print(f'Moody\'s Seasoned Aaa and Baa uploaded at {datetime.datetime.now()}')
