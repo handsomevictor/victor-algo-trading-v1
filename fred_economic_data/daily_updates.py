@@ -135,6 +135,9 @@ class FredData:
                                                                   f'{datetime.datetime.now()}')
         return data
 
+
+
+
     def upload_historical_data(self, data, measurement_name, bucket_name, product_name):
         if data is None or data.empty:
             logging.error(f'At {datetime.datetime.now()}')
