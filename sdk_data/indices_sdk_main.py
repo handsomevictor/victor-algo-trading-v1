@@ -52,7 +52,7 @@ def index_request(index_code, measurement_name, bucket_name, verify_ssl=False):
                         data['index_code'].append(index_code)
                         data['price'].append(price_)
                         i += 1
-                    # except key error
+
                     except IndexError as e:
                         # record time
                         logging.error(datetime.datetime.now(), e, message, '\n')

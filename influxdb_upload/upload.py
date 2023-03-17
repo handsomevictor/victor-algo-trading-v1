@@ -34,7 +34,7 @@ def execute_check_process(data: dict,
     # upload data (dict) to influxdb, each key is a list of values
     # use pandas
     df = pd.DataFrame(data)
-    # print(df)
+
     for index, row in df.iterrows():
         p = influxdb_client.Point(measurement_name) \
             .tag("index_code", row['index_code']) \
