@@ -18,7 +18,8 @@ def execute_check_process(data: dict,
                           measurement_name: str,
                           bucket_name: str,
                           org='victor',
-                          influxdb_token=os.environ['INFLUXDB_TOKEN']):
+                          influxdb_token=os.environ['INFLUXDB_TOKEN'],
+                          verify_ssl=False):
 
     url = "https://us-central1-1.gcp.cloud2.influxdata.com"
 
@@ -26,7 +27,7 @@ def execute_check_process(data: dict,
         url=url,
         token=influxdb_token,
         org=org,
-        verify_ssl=False
+        verify_ssl=verify_ssl
     )
     write_api = client.write_api(write_options=SYNCHRONOUS)
 

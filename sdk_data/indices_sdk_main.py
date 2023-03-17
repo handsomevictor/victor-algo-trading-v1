@@ -14,7 +14,7 @@ from kaikosdk.stream.index_v1 import request_pb2 as pb_index
 from influxdb_upload.upload import execute_check_process
 
 
-def index_request(index_code, measurement_name, bucket_name):
+def index_request(index_code, measurement_name, bucket_name, verify_ssl=False):
     credentials = grpc.ssl_channel_credentials(root_certificates=None)
     call_credentials = grpc.access_token_call_credentials(os.environ['KAIKO_API_KEY'])
     composite_credentials = grpc.composite_channel_credentials(credentials, call_credentials)
@@ -37,7 +37,7 @@ def index_request(index_code, measurement_name, bucket_name):
                 if i >= 1:
                     # upload data to influxdb
                     # print(data)
-                    execute_check_process(data, measurement_name, bucket_name)
+                    execute_check_process(data, measurement_name, bucket_name, verify_ssl=verify_ssl)
                     print(f'uploaded data to influxdb at {datetime.datetime.now()}')
 
                     data = defaultdict(list)
