@@ -44,16 +44,19 @@ def index_request(index_code, measurement_name, bucket_name, verify_ssl=False):
                     i = 0
                 else:
                     try:
-                        # change the time message['interval']['end_time'] to datetime, format is 2021-05-05T00:00:00Z
-                        data['current_time'].append(datetime.datetime.strptime(message['interval']['endTime'],
-                                                                               '%Y-%m-%dT%H:%M:%SZ'))
+                        time_ = datetime.datetime.strptime(message['interval']['endTime'], '%Y-%m-%dT%H:%M:%SZ')
+                        price_ = message['percentages'][0]['price']
+
+                        # make them split because later pandas Dataframe shape error will occur
+                        data['current_time'].append(time_)
                         data['index_code'].append(index_code)
-                        data['price'].append(message['percentages'][0]['price'])
+                        data['price'].append(price_)
                         i += 1
                     # except key error
-                    except KeyError as e:
+                    except IndexError as e:
                         # record time
                         logging.error(datetime.datetime.now(), e, message, '\n')
+                        continue
 
     except grpc.RpcError as e:
         print(e.details(), e.code())

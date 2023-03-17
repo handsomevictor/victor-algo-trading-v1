@@ -6,3 +6,9 @@
 同时直接GCP上跑模型和algo策略，然后上传influxdb（host在GCP上）上，然后用grafana展示，展示的还有策略的收益买卖点等
 
 数据源：kaiko，我自己的api
+
+
+建立本地数据库！
+
+Bug解决：
+1. 添加方案，如果stream没有数据，用rest获取，然后加入本地数据库
