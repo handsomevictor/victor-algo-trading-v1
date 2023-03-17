@@ -3,6 +3,8 @@ import os
 import logging
 import datetime
 
+bucket_name = 'fred_data'
+
 
 def run_daily_interest_rate_updates():
     log_dir = os.path.join(os.getcwd(), 'logging', 'fred_economic.log')
@@ -34,3 +36,37 @@ def run_daily_interest_rate_updates():
                                          product_name="Corporate Bond - Moody's Seasoned Baa "
                                                       "Corporate Bond Yield")
         print(f'Moody\'s Seasoned Aaa and Baa uploaded at {datetime.datetime.now()}')
+
+    # ----------- 30_Year_Jumbo_Mortgage_Index ------------
+    data_30_Year_Jumbo_Mortgage_Index = fred_data.get_30_Year_Jumbo_Mortgage_Index()
+    if data_30_Year_Jumbo_Mortgage_Index is not None:
+        fred_data.upload_historical_data(data=data_30_Year_Jumbo_Mortgage_Index,
+                                         bucket_name='testing',
+                                         measurement_name='corp_bond_aaa_try1',
+                                         product_name="30_Year_Jumbo_Mortgage_Index")
+        print(f'30_Year_Jumbo_Mortgage_Index uploaded at {datetime.datetime.now()}')
+
+    # ----------- T Bills Market Rate ------------
+    t_bill, which_one = fred_data.get_treasury_bill_secondary_market_rate()
+    name_dict = {1: '1 Year', 3: '3 Months', 4: '4 Weeks', 6: '6 Months'}
+    if t_bill is not None:
+        for i in range(len(t_bill)):
+            fred_data.upload_historical_data(data=t_bill[i],
+                                             bucket_name='testing',
+                                             measurement_name='t_bill_try1',
+                                             product_name=f"Treasury Bill - {name_dict[which_one[i]]} "
+                                                          f"Treasury Bill Secondary Market Rate")
+        print(f'T Bills Market Rate uploaded at {datetime.datetime.now()}')
+
+    # ----------- Bank Prime Loan Rate ------------
+    Bank_Prime_Loan_Rate = fred_data.Bank_Prime_Loan_Rate()
+    if Bank_Prime_Loan_Rate is not None:
+        fred_data.upload_historical_data(data=Bank_Prime_Loan_Rate,
+                                         bucket_name='testing',
+                                         measurement_name='corp_bond_aaa_try1',
+                                         product_name='Bank Prime Loan Rate')
+        print(f'Bank Prime Loan Rate uploaded at {datetime.datetime.now()}')
+
+
+def run_every_thursday_interest_rate_updates():
+    pass

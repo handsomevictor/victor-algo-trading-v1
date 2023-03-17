@@ -1,5 +1,4 @@
 from fred_economic_data import run_daily_interest_rate_updates
-from sdk_data import run_live_kaiko_indices
 
 
 def run():
