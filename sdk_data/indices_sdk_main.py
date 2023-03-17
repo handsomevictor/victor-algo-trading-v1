@@ -11,7 +11,7 @@ from google.protobuf.json_format import MessageToJson
 
 from kaikosdk import sdk_pb2_grpc
 from kaikosdk.stream.index_v1 import request_pb2 as pb_index
-from influxdb_upload.upload import execute_check_process
+from kaiko_indices_influxdb_upload.upload import execute_check_process
 
 
 def index_request(index_code, measurement_name, bucket_name, verify_ssl=False):

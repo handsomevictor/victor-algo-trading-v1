@@ -9,6 +9,13 @@
 
 
 建立本地数据库！
+关于日志的话，每一种数据都有各自的日志，存储在logging文件夹里
 
 Bug解决：
 1. 添加方案，如果stream没有数据，用rest获取，然后加入本地数据库
+
+
+宏观数据更新时间
+1. Corporate Bond: Every day update yesterday's data, at 4pm Paris time (10am New York time) - according to Fred website
+2. Moody's Seasoned Aaa Baa Corporate Bond Yield: Every day
+3. 

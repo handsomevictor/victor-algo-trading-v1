@@ -1,20 +1,23 @@
-from sdk_data.indices_sdk_main import index_request
 import sys
 import logging
 import os
 
+from fred_economic_data import run_daily_interest_rate_updates
+from sdk_data import run_live_kaiko_indices
+
+
+def run():
+    """
+    This function is the main function that runs all the daily updates, all of them are already uploaded to InfluxDB.
+    """
+    # ----------------- Daily Updates -----------------
+    # ----------------- Interest Rates ----------------
+    run_daily_interest_rate_updates()
+
+    # ----------------- Kaiko Indices -----------------
+    run_live_kaiko_indices()
+
+
 if __name__ == '__main__':
-    log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'indices_testing.log')
+    run()
 
-    logging.basicConfig(filename=log_dir, level=logging.DEBUG)
-
-    # if on Linux, set verify_ssl to True
-    if sys.platform == 'linux':
-        index_request(index_code='KK_RR_BTCUSD',
-                      bucket_name='testing',
-                      measurement_name='test_index_btcusd_1',
-                      verify_ssl=True)
-    else:
-        index_request(index_code='KK_RR_BTCUSD',
-                      bucket_name='testing',
-                      measurement_name='test_index_btcusd_1')
