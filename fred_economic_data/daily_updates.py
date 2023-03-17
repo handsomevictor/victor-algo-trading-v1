@@ -5,6 +5,7 @@ import datetime
 import os
 import pandas as pd
 import logging
+import warnings
 
 from influxdb_client import InfluxDBClient, Point, WriteOptions, WritePrecision
 import influxdb_client
@@ -13,6 +14,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 if sys.platform != 'linux':
     ssl._create_default_https_context = ssl._create_unverified_context
 
+warnings.filterwarnings("ignore")
+
 
 class FredData:
     """
@@ -20,8 +23,8 @@ class FredData:
     """
     def __init__(self):
         self.fred = Fred(api_key=os.environ['FRED_API_KEY'])
-
-        self.today = datetime.datetime.now().date().strftime('%Y-%m-%d')
+        # utc time
+        self.today = datetime.datetime.now(datetime.timezone.utc).date().strftime('%Y-%m-%d')
         self.start_date = '2010-01-01'
         self.data = {}
 
@@ -93,7 +96,6 @@ class FredData:
             point = Point(row['measurement']).tag('tag', row['tag']).field('value', row['value']).time(row['time'])
             points.append(point)
         write_api.write(bucket=bucket_name, org=self.org, record=points)
-        print('upload historical data done')
 
 
 if __name__ == '__main__':

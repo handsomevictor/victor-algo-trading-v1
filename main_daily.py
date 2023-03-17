@@ -1,7 +1,3 @@
-import sys
-import logging
-import os
-
 from fred_economic_data import run_daily_interest_rate_updates
 from sdk_data import run_live_kaiko_indices
 
@@ -13,9 +9,7 @@ def run():
     # ----------------- Daily Updates -----------------
     # ----------------- Interest Rates ----------------
     run_daily_interest_rate_updates()
-
-    # ----------------- Kaiko Indices -----------------
-    run_live_kaiko_indices()
+    print('Daily Interest Rate Updates Done')
 
 
 if __name__ == '__main__':

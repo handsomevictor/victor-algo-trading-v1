@@ -6,12 +6,16 @@ import rx
 from pytz import UTC
 from rx import operators as ops
 
+import warnings
+
 from influxdb_client import InfluxDBClient, Point, WriteOptions, WritePrecision
 from influxdb import DataFrameClient
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
 from concurrent.futures import ProcessPoolExecutor
 from itertools import repeat
+
+warnings.filterwarnings("ignore")
 
 
 def execute_check_process(data: dict,
