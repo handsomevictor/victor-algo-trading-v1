@@ -11,6 +11,8 @@
 2. macro: Fred
 3. forex & commodity: Yahoo Finance
 4. news: Google News ????
+5. Rapid API （目前没打算用，可能之后搜集每日的数据的时候用到）
+6. 
 
 目标：
 在GCP上存储数据（动态数据，目前打算存储coinmarketcap上前10名的coin在最大的几家交易所上的trade和ohlcv等数据）
@@ -38,7 +40,8 @@
 14. 大宗商品
 15. 找找那种比如拖拉机销量什么的数据，monthly quarterly就行，然后做个预测
 16. 专门搞个dashboard，里面放上预测，然后到日期后与实际数据对比
-17.
+17. 把每一个数据的availability全部放到一个专门的bucket里面，然后在dashboard首页放一下，告知自己或者别人
+18. 
 
 
 说明：
