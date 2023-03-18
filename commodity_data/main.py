@@ -119,12 +119,12 @@ if __name__ == '__main__':
     Nasdaq_F = commodity_data.get_commodity_data(commodity_data.today, 'NQ=F', interval='1m')
     commodity_data.upload_data(data=Nasdaq_F,
                                bucket_name='testing',
-                               measurement_name='commodity_data_try1',
+                               measurement_name='commodity_data_try3',
                                product_name='Nasdaq_Futures')
 
     Nasdaq_F = commodity_data.get_commodity_data(commodity_data.today, 'NQ=F', interval='1h')
     commodity_data.upload_data(data=Nasdaq_F,
                                bucket_name='testing',
-                               measurement_name='commodity_data_try2',
+                               measurement_name='commodity_data_try4',
                                product_name='Nasdaq_Futures')
 
