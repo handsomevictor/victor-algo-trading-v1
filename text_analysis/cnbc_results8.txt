@@ -1,43 +1,44 @@
 
 
-1- Score: 2, Classification: Consumer Finance
-2- Score: 0, Classification: Health
-3- Score: 7, Classification: General Business
-4- Score: 8, Classification: Logistics
-5- Score: 5, Classification: Energy
-6- Score: 3, Classification: Retail
-7- Score: 6, Classification: Consumer Finance
-8- Score: 2, Classification: Logistics
-9- Score: 4, Classification: Transportation
-10- Score: 5, Classification: Real Estate
-11- Score: 7, Classification: Tech
-12- Score: 6, Classification: General Business
-13- Score: 3, Classification: Accidents
-14- Score: 1, Classification: General Business
-15- Score: 4, Classification: Policy & Regulation
-16- Score: 6, Classification: Real Estate
-17- Score: 2, Classification: Agriculture
-18- Score: 1, Classification: Accidents
-19- Score: 7, Classification: Tech
-20- Score: 7, Classification: Tech
-21- Score: 2, Classification: Financial Markets
-22- Score: 8, Classification: Transportation
-23- Score: 6, Classification: Consumer Finance
-24- Score: 5, Classification: Transportation
-25- Score: 9, Classification: Energy
-26- Score: 6, Classification: Real Estate
-27- Score: 3, Classification: Transportation
-28- Score: 8, Classification: Tech
-29- Score: 4, Classification: Logistics
-30- Score: 7, Classification: General Business
-31- Score: 4, Classification: Transportation
-32- Score: 7, Classification: Transportation
-33- Score: 2, Classification: Energy
-34- Score: 4, Classification: General Business
+Out1: 3, Out2: Consumer Finance
+Out1: 0, Out2: Health
+Out1: 6, Out2: Real Estate
+Out1: 8, Out2: General Business
+Out1: 7, Out2: Policy & Regulation
+Out1: 4, Out2: Retail
+Out1: 6, Out2: Consumer Finance
+Out1: 2, Out2: General Business
+Out1: 3, Out2: Consumer Finance
+Out1: 5, Out2: Real Estate
+Out1: 7, Out2: Tech
+Out1: 6, Out2: General Business
+Out1: 2, Out2: Insurance
+Out1: 0, Out2: General Business
+Out1: 5, Out2: Accidents
+Out1: 7, Out2: Entertainment
+Out1: 5, Out2: Real Estate
+Out1: 1, Out2: Accidents
+Out1: 7, Out2: Entertainment
+Out1: 8, Out2: Tech
+Out1: 2, Out2: Financial Markets
+Out1: 8, Out2: International Trade
+Out1: 6, Out2: General Business
+Out1: 5, Out2: Travel
+Out1: 9, Out2: Energy
+Out1: 3, Out2: Real Estate
+Out1: 2, Out2: Travel
+Out1: 7, Out2: Tech
+Out1: 5, Out2: General Business
+Out1: 4, Out2: Policy & Regulation
+Out1: 8, Out2: General Business
+Out1: 1, Out2: Automotive
+Out1: 3, Out2: Travel
+Out1: 6, Out2: General Business
+Out1: 4, Out2: Automotive
 
 Top 5 influential news:
-1. General Motors' China business is hurting, and it's not just because of Covid.
+1. Volkswagen announces five-year $193 billion investment plan as electrification gathers pace
 2. FedEx hikes 2023 earnings forecast as cost-cutting initiatives bear fruit
-3. Astra outlines its plan to avoid Nasdaq delisting
-4. AMC plunges as investors approve reverse stock split, APE share conversion
-5. Volkswagen announces five-year $193 billion investment plan as electrification gathers pace
+3. Boeing sells 78 Dreamliner planes to Saudi airlines
+4. United shares tumble after airline forecasts first-quarter loss
+5. Astra outlines its plan to avoid Nasdaq delisting

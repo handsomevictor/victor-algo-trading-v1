@@ -1,0 +1,45 @@
+
+
+Out1: 3, Out2: Consumer Finance
+Out1: 0, Out2: Health
+Out1: 6, Out2: Entertainment
+Out1: 8, Out2: Logistics
+Out1: 4, Out2: Healthcare
+Out1: 3, Out2: Retail
+Out1: 7, Out2: Transportation
+Out1: 2, Out2: Aerospace & Defense
+Out1: 2, Out2: Transportation
+Out1: 5, Out2: Real Estate
+Out1: 8, Out2: Aerospace & Defense
+Out1: 6, Out2: Consumer Goods
+Out1: 2, Out2: Legal
+Out1: 1, Out2: Media
+Out1: 5, Out2: Financial Markets
+Out1: 0, Out2: Legal
+Out1: 6, Out2: Real Estate
+Out1: 2, Out2: Transportation
+Out1: 4, Out2: Media
+Out1: 7, Out2: Tech
+Out1: 1, Out2: Financial Markets
+Out1: 8, Out2: Aerospace & Defense
+Out1: 7, Out2: Sports
+Out1: 5, Out2: Transportation
+Out1: 9, Out2: Automotive
+Out1: 5, Out2: Financial Markets
+Out1: 2, Out2: Transportation
+Out1: 1, Out2: Aerospace & Defense
+Out1: 6, Out2: Tech
+Out1: 4, Out2: Automotive
+Out1: 10, Out2: Entertainment
+Out1: 3, Out2: Policy & Regulation
+Out1: 7, Out2: Aerospace & Defense
+Out1: 1, Out2: Automotive
+Out1: 4, Out2: Entertainment
+Out1: 5, Out2: Finance
+
+Top 5 influential news:
+1. 25. Volkswagen announces five-year $193 billion investment plan as electrification gathers pace.
+2. 4. FedEx hikes 2023 earnings forecast as cost-cutting initiatives bear fruit.
+3. 27. United shares tumble after airline forecasts first-quarter loss.
+4. 30. 'Everything Everywhere All at Once' dominates the Oscars with seven wins.
+5. 1. General Motors' China business is hurting, and it's not just because of Covid.

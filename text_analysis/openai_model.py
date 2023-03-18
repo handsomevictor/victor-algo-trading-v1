@@ -6,6 +6,7 @@ from tqdm import tqdm
 """
 逻辑：
 早上的时候爬虫新闻网站，然后把所有的句子，先判断长度，然后输入到openai，然后输出一个分数，然后输出一个分类，发表在grafana上
+不知道为什么如果选取新闻的话，不加原title的话效果不好
 
 然后把它选出来的最具有影响力的新闻打印出来，写到某个地方
 """
@@ -65,41 +66,44 @@ if __name__ == "__main__":
             'Insurance, International Trade, Education, General Business, Tech, Financial Markets, ' \
             'Policy & Regulation, ESG, Health, Accidents, Disasters, Climate. ' \
             'The return format for first part is as follows: ' \
-            'For one sentence in one line: ' \
-            'my original news index: Score: only your score, no text, ' \
-            'my original news index: Classification: only your choice from my classification. ' \
+            'For one sentence, reply in one line: ' \
+            'Out1: only your score, no text, ' \
+            'Out2: only your choice from my classification. ' \
             'You should analyze the sentences according to their original order. ' \
-            'In the second part, choose 5 news that you think are most influential ' \
-            'among investors and traders, index them from 1 to 5 in the following format: ' \
-            'Top 5 influential news: (new line) 1. first news. (new line) 2. second news. etc. ' \
-            'Remember to remove the index before each news. ' \
-            'Remember do not change the title of the news that I gave you. ' \
+            'In the second part, choose 5 pieces of news that you think are most influential to ' \
+            'financial market, index them from 1 to 5 in the following format: ' \
+            'Top 5 influential news: (new line) ' \
+            '1. first news original index, first news. (new line) ' \
+            '2. second news original index, first news. (new line). etc. ' \
+            'Remember that the index of these 5 news must be the index or the original news. ' \
             'Remember to add an empty line between these 2 parts. ' \
             'Only reply what I asked, you should reply 34 lines. ' \
             'Target Sentences are as follows: '
 
     sentences = order + ' '.join(key_sentences)
-
+    print(sentences)
     res = chat_with_gpt35turbo(sentences, max_tokens=1500)
     print(res)
 
-    with open('cnbc_results8.txt', 'w', encoding='utf-8') as f:
+    with open('cnbc_results11.txt', 'w', encoding='utf-8') as f:
         f.write(res)
+    #
+    # # read data
+    # with open('cnbc_results7.txt', 'r', encoding='utf-8') as f:
+    #     # read all
+    #     lines = f.read()
+    #     lines1, lines2 = lines.split('Top 5 influential news:')
+    #
+    #     # read line by line in line1
+    #     lines1 = lines1.splitlines()
+    #     lines1 = [line.strip() for line in lines1]
+    #     lines1 = [line for line in lines1 if line != '']
+    #     # read line by line in line2
+    #     lines2 = lines2.splitlines()
+    #     lines2 = [line.strip() for line in lines2]
+    #     lines2 = [line for line in lines2 if line != '']
+    #
+    # print(lines1)
+    # print(lines2)
 
-    # read data
-    with open('cnbc_results7.txt', 'r', encoding='utf-8') as f:
-        # read all
-        lines = f.read()
-        lines1, lines2 = lines.split('Top 5 influential news:')
-
-        # read line by line in line1
-        lines1 = lines1.splitlines()
-        lines1 = [line.strip() for line in lines1]
-        lines1 = [line for line in lines1 if line != '']
-        # read line by line in line2
-        lines2 = lines2.splitlines()
-        lines2 = [line.strip() for line in lines2]
-        lines2 = [line for line in lines2 if line != '']
-
-    print(lines1)
-    print(lines2)
+    # 加入足够多的try和output format check
