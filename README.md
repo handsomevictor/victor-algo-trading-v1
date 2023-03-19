@@ -47,7 +47,8 @@
 说明：
 1. 关于日志的话，每一种数据都有各自的日志，存储在logging文件夹里
 2. 所有的时间，都以UTC时间基准
-3. 
+3. influxDB里面，measurement名字中，IR_CB代表interest rate, corporate bond
+4. Availability check中，0是获取数据的代码没有运行，压根没有尝试获取数据，-1是获取失败，1是数据available
 
 
 Bug解决：

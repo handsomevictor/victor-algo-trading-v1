@@ -2,7 +2,7 @@ import os
 import logging
 import sys
 
-from sdk_data.indices_sdk_main import index_request
+from kaiko_sdk_data.indices_sdk_main import index_request
 
 
 def run_live_kaiko_indices():

@@ -1,4 +1,4 @@
-from sdk_data import run_live_kaiko_indices
+from kaiko_sdk_data import run_live_kaiko_indices
 
 
 def run():
