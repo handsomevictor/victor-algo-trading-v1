@@ -85,7 +85,7 @@ if __name__ == "__main__":
     res = chat_with_gpt35turbo(sentences, max_tokens=1500)
     print(res)
 
-    with open('cnbc_results11.txt', 'w', encoding='utf-8') as f:
+    with open('cnbc_results12.txt', 'w', encoding='utf-8') as f:
         f.write(res)
     #
     # # read data
