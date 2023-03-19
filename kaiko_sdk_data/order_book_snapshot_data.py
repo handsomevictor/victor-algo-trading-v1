@@ -12,6 +12,7 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from itertools import repeat
 from tqdm import tqdm
 import logging
+import warnings
 
 from contants import write_api
 from availability_check import availability_total
@@ -19,6 +20,8 @@ from availability_check import availability_total
 from influxdb_client import InfluxDBClient, Point, WriteOptions, WritePrecision
 import influxdb_client
 from influxdb_client.client.write_api import SYNCHRONOUS
+
+warnings.filterwarnings("ignore")
 
 
 def time_convert(timestamp):
