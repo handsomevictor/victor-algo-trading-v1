@@ -7,6 +7,7 @@ def run():
     """
     # ----------------- Daily Updates -----------------
 
+    # ----------------- Fred Economic Data ------------
     # ----------------- Interest Rates ----------------
     run_daily_interest_rate_updates()
     print('Daily Interest Rate Updates Done')
