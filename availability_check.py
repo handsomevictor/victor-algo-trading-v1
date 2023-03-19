@@ -17,6 +17,12 @@ availability_total = {
             'Job_Openings_and_Labor_Turnover_Survey': 0,
         },
     },
+    "minute_updates": {
+        'kaiko_ob_data': {
+            'binc_btc-usdt': 0,
+            # 'binc_ethusdt': 0,
+        },
+    },
     "live_updates": {
         'kaiko_sdk_data': {
             'index_request': {
