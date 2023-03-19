@@ -158,9 +158,11 @@ def get_orderbook_single(exch, pair, start_time, end_time, interval='1m'):
         final_res = pd.DataFrame(final_res)
         while 'next_url' in res:
             ob_url = res['next_url']
-            tmp_data = requests.get(ob_url, headers=headers).json()['data']
+            tmp_res = requests.get(ob_url, headers=headers).json()
+            tmp_data = tmp_res['data']
             tmp_data = pd.DataFrame(tmp_data)
             final_res = pd.concat([final_res, tmp_data])
+            res = tmp_res
             print(1)
 
         # res_data['poll_timestamp'] = pd.to_datetime(res_data['poll_timestamp'], unit='ms')
@@ -168,17 +170,14 @@ def get_orderbook_single(exch, pair, start_time, end_time, interval='1m'):
         final_res['poll_timestamp'] = pd.to_datetime(final_res['poll_timestamp'], unit='ms', utc=True, infer_datetime_format=True)
         final_res['poll_timestamp'] = final_res['poll_timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
-        # spread column round to 4 decimal places
-        final_res['spread'] = final_res['spread'].round(4)
-        final_res['mid_price'] = final_res['mid_price'].round(4)
-
-        final_res['bid_slippage'] = (final_res['bid_slippage'] * 10000).round(4)
-        final_res['ask_slippage'] = (final_res['ask_slippage'] * 10000).round(4)
+        # final_res.to_csv('ob.csv', index=False)
+        # rounding will be done later, since there is always some bugs......
+        final_res['bid_slippage'] = final_res['bid_slippage'] * 10000
+        final_res['ask_slippage'] = final_res['ask_slippage'] * 10000
 
         final_res['pair'] = pair
         final_res['exchange'] = exch
 
-        # final_res.to_csv('ob.csv', index=False)
         availability_total['minute_updates']['kaiko_ob_data'][f'{exch}_{pair}'] = 1
 
         return final_res
@@ -228,7 +227,7 @@ if __name__ == '__main__':
     params = {
         'exch': 'binc',
         'pair': 'btc-usdt',
-        'start_time': (datetime.datetime.now() - datetime.timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:00Z'),
+        'start_time': (datetime.datetime.now() - datetime.timedelta(minutes=120)).strftime('%Y-%m-%dT%H:%M:00Z'),
         'end_time': datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:00Z'),
         'interval': '1m',
     }
