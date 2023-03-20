@@ -1,3 +1,9 @@
 2023-03-20 00:50:48,935 At 2023-03-20 00:50:48.935267, kaiko ob data retrival failure for: binc, btc-usdt, 2023-03-20T00:49:00Z, 2023-03-20T00:50:00Z, 1m
 2023-03-20 00:50:48,935 At 2023-03-20 00:50:48.935542
 2023-03-20 00:50:48,935 Error in upload_orderbook_data: data is None or empty
+2023-03-20 01:08:10,300 At 2023-03-20 01:08:10.300847, kaiko ob data retrival failure for: binc, btc-usdt, 2023-03-20T01:07:00Z, 2023-03-20T01:08:00Z, 1m
+2023-03-20 01:08:10,301 At 2023-03-20 01:08:10.301257
+2023-03-20 01:08:10,301 Error in upload_orderbook_data: data is None or empty
+2023-03-20 01:12:41,188 At 2023-03-20 01:12:41.188671, kaiko ob data retrival failure for: binc, btc-usdt, 2023-03-20T01:10:00Z, 2023-03-20T01:12:00Z, 1m
+2023-03-20 01:12:41,189 At 2023-03-20 01:12:41.189427
+2023-03-20 01:12:41,189 Error in upload_orderbook_data: data is None or empty

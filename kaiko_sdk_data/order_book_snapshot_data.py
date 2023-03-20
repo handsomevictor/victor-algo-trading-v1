@@ -166,27 +166,25 @@ def get_orderbook_single(exch, pair, start_time, end_time, interval='1m'):
             tmp_data = pd.DataFrame(tmp_data)
             final_res = pd.concat([final_res, tmp_data])
             res = tmp_res
-            print(1)
 
-        # res_data['poll_timestamp'] = pd.to_datetime(res_data['poll_timestamp'], unit='ms')
-        # res_data['poll_timestamp'] = res_data['poll_timestamp'].astype('int64')
-        final_res['poll_timestamp'] = pd.to_datetime(final_res['poll_timestamp'], unit='ms', utc=True, infer_datetime_format=True)
-        final_res['poll_timestamp'] = final_res['poll_timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-
-        # final_res.to_csv('ob.csv', index=False)
-        # rounding will be done later, since there is always some bugs......
-        final_res['bid_slippage'] = final_res['bid_slippage'] * 10000
-        final_res['ask_slippage'] = final_res['ask_slippage'] * 10000
+        final_res['poll_timestamp'] = pd.to_datetime(final_res['poll_timestamp'], unit='ms')
+        final_res['poll_timestamp'] = final_res['poll_timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
 
         final_res['pair'] = pair
         final_res['exchange'] = exch
 
         availability_total['minute_updates']['kaiko_ob_data'][f'{exch}_{pair}'] = 1
 
+        # change type to float for all columns
+        for col in final_res.columns:
+            if col not in ['poll_timestamp', 'pair', 'exchange']:
+                final_res[col] = final_res[col].astype(float)
+
         return final_res
     except KeyError:
         logging.error(f'At {datetime.datetime.now()}, kaiko ob data retrival failure for: '
                       f'{exch}, {pair}, {start_time}, {end_time}, {interval}')
+        return None
     # 但是还没有完成上传availability！以后再做！
 
 
@@ -194,17 +192,18 @@ def upload_historical_data(data, measurement_name, bucket_name, product_name):
     if data is None or data.empty:
         logging.error(f'At {datetime.datetime.now()}')
         logging.error(f"Error in upload_orderbook_data: data is None or empty")
+        print(f'At {datetime.datetime.now()}, Error in upload_orderbook_data: data is None or empty')
         return None
 
-    data['measurement'] = measurement_name
-    data['tag'] = product_name
     points = []
+
     for index, row in data.iterrows():
-        point = Point(row['measurement']) \
-            .tag('tag', row['tag']) \
+        point = Point(measurement_name) \
+            .tag('tag', product_name) \
             .time(row['poll_timestamp'])
         for col in data.columns:
-            point = point.field(col, row[col])
+            if col not in ['poll_timestamp', 'pair', 'exchange']:
+                point = point.field(col, row[col])
 
         points.append(point)
     write_api.write(bucket=bucket_name, record=points)
@@ -215,11 +214,14 @@ def ob_update(exch, pair, interval='1m'):
     params = {
         'exch': exch,
         'pair': pair,
-        'start_time': (datetime.datetime.now() - datetime.timedelta(minutes=1)).strftime('%Y-%m-%dT%H:%M:00Z'),
-        'end_time': datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:00Z'),
+        'start_time': (datetime.datetime.now(datetime.timezone.utc) -
+                       datetime.timedelta(minutes=1)).strftime('%Y-%m-%dT%H:%M:00Z'),
+        'end_time': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:00Z'),
         'interval': interval,
     }
+
     ob_full_data = get_orderbook_single(**params)
+    print(ob_full_data)
     upload_historical_data(data=ob_full_data,
                            bucket_name='testing',
                            measurement_name='ob_btcusdt_try1',
@@ -230,11 +232,11 @@ if __name__ == '__main__':
     params = {
         'exch': 'binc',
         'pair': 'btc-usdt',
-        'start_time': (datetime.datetime.now() - datetime.timedelta(minutes=120)).strftime('%Y-%m-%dT%H:%M:00Z'),
-        'end_time': datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:00Z'),
+        'start_time': (datetime.datetime.now(datetime.timezone.utc) -
+                       datetime.timedelta(minutes=20)).strftime('%Y-%m-%dT%H:%M:00Z'),
+        'end_time': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:00Z'),
         'interval': '1m',
     }
-    print(params)
 
     import time
     start = time.time()
